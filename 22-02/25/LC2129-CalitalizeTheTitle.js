@@ -18,25 +18,11 @@
  * @return {string}
  */
 var capitalizeTitle = function(title) {
-  let newTitle = '';
-  let curWord = '';
-  for (const char of title) {
-    if (char === ' ') {
-      if (curWord.length < 3) {
-        newTitle = newTitle + ' ' + curWord;
-      } else {
-        newTitle = newTitle + ' ' + curWord.slice(0, 1).toUpperCase() + curWord.slice(1);
-      }
-      curWord = '';
-    } else {
-      curWord += char.toLowerCase();
-    }
-  }
-  if (curWord.length < 3) {
-    newTitle = newTitle + ' ' + curWord;
-  } else {
-    newTitle = newTitle + ' ' + curWord.slice(0, 1).toUpperCase() + curWord.slice(1);
-  }
-
-  return newTitle.trim();
+  return title
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.length < 3 ? 
+      word : 
+      word.slice(0, 1).toUpperCase() + word.slice(1))
+    .join(' ');
 };
