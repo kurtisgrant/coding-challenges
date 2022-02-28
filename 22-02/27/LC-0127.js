@@ -16,13 +16,23 @@
  * @param {number[]} prices
  * @return {number}
  */
+
+// This is a solution, however I think it is 
+// on the order of (n log n). I think I can
+// do better.
 var maxProfit = function(prices) {
-  let highest = -Infinity;
-  let lowest = Infinity;
-  
+
+  let maxProfit = -Infinity;
+
   for (let i = 0; i < prices.length; i++) {
-    const price = prices[i];
-    for (let j = 1; j < prices.length; j++) {
-      if 
+    const buyPrice = prices[i];
+    for (let j = i + 1; j < prices.length; j++) {
+      const sellPrice = prices[j];
+      if (sellPrice - buyPrice > maxProfit) {
+        maxProfit = sellPrice - buyPrice;
+      }
     }
+  }
+  return maxProfit > 0 ? maxProfit : 0;
 };
+
