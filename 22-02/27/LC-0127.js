@@ -36,3 +36,21 @@ var maxProfit = function(prices) {
   return maxProfit > 0 ? maxProfit : 0;
 };
 
+// Much improved solution on the order of (n)
+var maxProfitImproved = function(prices) {
+
+  let maxProfit = 0;
+  let curLow = Infinity;
+
+  for (let i = 0; i < prices.length; i++) {
+    const curPrice = prices[i];
+    if (curPrice - curLow > maxProfit) {
+      maxProfit = curPrice - curLow
+    }
+    if (curPrice < curLow) {
+      curLow = curPrice;
+    }
+  }
+  return maxProfit > 0 ? maxProfit : 0;
+};
+
